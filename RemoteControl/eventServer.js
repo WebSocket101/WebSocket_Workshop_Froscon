@@ -25,7 +25,7 @@ THE SOFTWARE.
 var WebSocketServer = require('websocket').server;
 var crypto = require('crypto');
 var base64url = require('base64url');
-//Store App WebSockets here
+//Speichere alle Websockets der App hier ab
 var connections = {};
 
 module.exports.setWebServer = function(server){
@@ -38,7 +38,7 @@ module.exports.setWebServer = function(server){
 		if(req.resource == "/" || req.resource == "" || typeof req.resource === "undefined"){
 			var connection = req.accept();
 			try {
-				//Generate session id
+				//Generiere Session-Id
 				var sid = base64url(crypto.randomBytes(16));
 				connection.sid = sid;
 				connections[sid] = connection;
@@ -54,8 +54,8 @@ module.exports.setWebServer = function(server){
 		}
 		else if(req.resourceURL.pathname == "/controller"){
 			var connection = req.accept();
-			//TODO Get App WebSockets from sid. Consider to use req.resourceURL.query.
-			//TODO Forward commands to App
+			//TODO Finde den passenden WebSocket anhand der Session-Id
+			//TODO Leite die Befehle des Controlles an die App weiter
 
 		}
 		else{

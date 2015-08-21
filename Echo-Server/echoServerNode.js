@@ -48,12 +48,12 @@ wsServer.on("request",function(req){
 	var connection = req.accept();
 
 	/*
-		Connection-Object functions:
+		Connection-Object Funktionen:
 
 		sendUTF( string )
 		sendBytes( buffer )
 
-		Documentation:
+		Dokumentation:
 		https://github.com/Worlize/WebSocket-Node/wiki/Documentation
 
 	*/
@@ -78,7 +78,7 @@ wsServer.on("request",function(req){
 		*/
 
 		if(message.type == "utf8"){
-			//Code here ...
+			//TODO
 		
 		}
 
