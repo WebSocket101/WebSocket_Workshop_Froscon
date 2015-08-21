@@ -1,0 +1,16 @@
+{
+    "name": "WS-RemoteControl",
+    "version": "0.0.1",
+    "description": "WebSocket-based Remote Control",
+    "keywords": ["WebSocket", "Remote Control"],
+    "dependencies": {
+        "websocket": "1.0.20",
+        "base64url": "1.0.4"
+    },
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "start":"node webServer"
+    }
+}

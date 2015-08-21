@@ -1,0 +1,60 @@
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2015 Hoai Viet Nguyen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<!DOCTYPE html>
+	<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<title>Controller</title>
+			<link rel="stylesheet" href="">
+	</head>
+	<body>
+		<h1>Controller</h1>
+		<button onclick="sendCommand('left')">left</button>
+		<button onclick="sendCommand('right')">right</button>
+		<button onclick="sendCommand('top')">top</button>
+		<button onclick="sendCommand('down')">down</button>
+	</body>
+	<script type="text/javascript">
+
+		var query = getJsonFromUrl();
+
+		var ws = new WebSocket("ws://"+location.host+"/controller?sid="+query.sid);
+
+		
+		function sendCommand (cmd) {
+			var event = {type:"cmd",cmd:cmd};
+			//TODO Send command to server. Consider to use JSON.stringify. 
+		}
+
+		function getJsonFromUrl() {
+		  var query = location.search.substr(1);
+		  var result = {};
+		  query.split("&").forEach(function(part) {
+		    var item = part.split("=");
+		    result[item[0]] = decodeURIComponent(item[1]);
+		  });
+		  return result;
+		}
+	</script>
+</html>

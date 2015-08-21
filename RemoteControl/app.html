@@ -1,0 +1,105 @@
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2015 Hoai Viet Nguyen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<!DOCTYPE html>
+	<head>
+			<meta charset="utf-8">
+			<title>App</title>
+			<style type="text/css">
+
+				#canvas{
+					border: 1px solid #ddd;
+				}
+			</style>
+	</head>
+	<body>
+		<h1>App</h1>
+		<canvas width="500" height="500" id="canvas"></canvas>
+		
+			<a href="" id="link" target="_blank"><img src="" id="qr"></a>
+		
+		<script type="text/javascript">
+			
+			
+
+			var canvas = document.getElementById("canvas");
+			var x = canvas.width/2; 
+			var y = canvas.width/2;
+			var ctx = canvas.getContext("2d");
+			
+			
+			drawCircle();
+
+			function clear(){
+				ctx.clearRect(0,0,canvas.width,canvas.height)
+			}
+
+			function drawCircle(){
+				ctx.beginPath();
+				ctx.fillStyle = 'Red';
+				ctx.arc(x, y, 25, 0, 2 * Math.PI, false);
+				ctx.fill();
+				ctx.stroke();
+			}
+
+			var ws = new WebSocket("ws://"+location.host);
+			var link = document.getElementById("link");
+			var qr = document.getElementById("qr");
+
+
+			ws.onmessage = function(message){
+				var event = JSON.parse(message.data);
+				if(event.type == "sid"){		
+					var url ="http://"+location.host+"/controller?id=TODO Get session id";
+					link.href="/controller?sid=TODO Get session id";
+					qr.src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+url;
+				}
+				else if(event.type == "cmd"){
+
+					clear();
+					
+					if(event.cmd=="right"){
+						//TODO
+					}
+
+					else if (event.cmd=="left"){
+						//TODO
+					}
+
+					else if (event.cmd=="top"){
+						//TODO
+					}
+
+					else if(event.cmd=="down"){
+						//TODO
+					}
+
+					drawCircle();
+				}
+			}
+
+			
+
+		</script>
+	</body>
+</html>

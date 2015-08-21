@@ -1,0 +1,15 @@
+{
+    "name": "Echo-Server",
+    "version": "0.0.1",
+    "description": "WebSocket-Echo-Server",
+    "keywords": ["WebSocket", "Echo-Server"],
+    "dependencies": {
+        "websocket": "1.0.20"
+    },
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "start":"node echoServerNode"
+    }
+}
