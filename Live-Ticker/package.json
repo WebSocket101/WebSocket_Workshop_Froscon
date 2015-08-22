@@ -1,0 +1,15 @@
+{
+    "name": "Live-Ticker",
+    "version": "0.0.1",
+    "description": "WebSocket-based Live-Ticker",
+    "keywords": ["WebSocket", "Live-Ticker"],
+    "dependencies": {
+        "websocket": "1.0.20"
+    },
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "start":"node server"
+    }
+}

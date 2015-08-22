@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Live-Ticker</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		#ticker{
+			border: #ddd solid 1px;
+			width: 600px;
+			height: 600px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Live-Ticker</h1>
+	<div id="ticker"></div>
+</body>
+<script type="text/javascript">
+	var ws = new WebSocket("ws://"+window.location.host);
+	var ticker = document.getElementById("ticker");
+	//TODO Empfange die Live-Ticker-Nachricht
+
+</script>
+</html>

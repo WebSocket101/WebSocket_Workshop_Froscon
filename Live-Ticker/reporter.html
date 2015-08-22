@@ -1,4 +1,4 @@
-/*
+<!--
 The MIT License (MIT)
 
 Copyright (c) 2015 Hoai Viet Nguyen
@@ -20,46 +20,40 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-*/
+-->
 
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
-var resourceURL;
-var port = 3000;
+<!DOCTYPE html>
+	<head>
+			<title>WebSocket Live-Ticker Reporter</title>
+			<link rel="stylesheet" href="">
+	</head>
+	<body>
+		<h1>WebSocket Live-Ticker Reporter</h1>
+		<input type="text" id="message"/>
+		<input type="button" value="send" id="button"/>
+	</body>
+	<script>
 
-var server = http.createServer(function(req,res){
-	resourceURL = url.parse(req.url,true);
-	
-	if(resourceURL.pathname == "/"){
-		fs.readFile(__dirname+"/app.html", function(err,data){
-			if(err){
-				res.writeHead(500);
-				return res.end("Error");
-			}
-			res.writeHead(200);
-			res.end(data);
-		});
-	}
+		var ws = new WebSocket("ws://"+window.location.host+"/reporter");
+		var message = document.getElementById("message");
+		var echoMessage = document.getElementById("echoMessage");
 		
-	else if(resourceURL.pathname == "/controller"){
-		fs.readFile(__dirname+"/controller.html",function(err,data){
-			if(err){
-				res.writeHead(500);
-				return res.end("Error");
+		message.onkeydown = function(e){
+			if(e.keyCode == 13){
+				sendMessage();
 			}
-			res.writeHead(200);
-			res.end(data);
-		})
-	} else {
-		res.writeHead(404);
-		res.end("Not Found");
-	}
+		}
 
-});
+		var button = document.getElementById("button");
 
-require('./eventServer').setWebServer(server);
+		button.onclick = function(e){
+			sendMessage();
+		}
 
-server.listen(port, function(){
-	console.log("Server running on port "+port);
-});
+
+		function sendMessage(){
+			//TODO Sende Live-Ticker-Nachricht
+	
+		}
+	</script>
+</html>
